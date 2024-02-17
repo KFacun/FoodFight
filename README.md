@@ -1,8 +1,4 @@
 # CISC191-FALL2020-C
-##Prerequisites  
-Java 8+  
-Maven  
+Intermediate Java - Group Project
 
-##How to build and run  
-mvn clean install  
-java -jar target/FoodFight-1.0.0.jar
+Reese, Lauren, Kaelin, Esther
