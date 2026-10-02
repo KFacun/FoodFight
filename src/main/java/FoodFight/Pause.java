@@ -6,7 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 // This is the pause menu
-// The timer was never able to be paused and resumed
+// Pause menu done by Kaelin
 
 public class Pause extends MouseAdapter {
 
@@ -82,3 +82,4 @@ public class Pause extends MouseAdapter {
 		this.game = game;
 	}
 }	
+
