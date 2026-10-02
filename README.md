@@ -10,10 +10,10 @@ and throwing food at enemies. **Defeat all of them to win.**
 
 
 
-Requirements
+**Requirements**
 - JDK 14 or newer
 
-How to Run:
+**How to Run:**
 
 Through the project folder:
     mkdir out
