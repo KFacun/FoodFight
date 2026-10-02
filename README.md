@@ -32,11 +32,16 @@ There are images involved for the sprites so make sure 'src/main/resources' is o
 - Defeat all 26 enemies to win. Your time is shown on the end screen.
 
 # Team
-Main character and Sprite Animation: Reese Bell
-Game over/Lose State: Lauren Tomasi
-Main Menu/Pause Menu: Kaelin Facun
-Character Design and Animation: Esther Song
-Bullet Collision: Dennis Lai
+Main character and Sprite Animation: 
+Reese Bell
+Game over/Lose State: 
+Lauren Tomasi
+Main Menu/Pause Menu: 
+Kaelin Facun
+Character Design and Animation: 
+Esther Song
+Bullet Collision: 
+Dennis Lai
 
 # Known Issues
 - An IndexOutOfBoundsException can occasionally freeze game movement.
