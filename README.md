@@ -34,12 +34,16 @@ There are images involved for the sprites so make sure 'src/main/resources' is o
 # Team
 Main character and Sprite Animation: 
 Reese Bell
+
 Game over/Lose State: 
 Lauren Tomasi
+
 Main Menu/Pause Menu: 
 Kaelin Facun
+
 Character Design and Animation: 
 Esther Song
+
 Bullet Collision: 
 Dennis Lai
 
