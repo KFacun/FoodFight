@@ -4,6 +4,8 @@ A top-down shooter built in Java (Swing/AWT) for CISC 191 (Fall 2020).
 You play a character armed with a spork, fighting through a maze
 and throwing food at enemies. **Defeat all of them to win.**
 
+<img width="800" height="619" alt="FoodFight" src="https://github.com/user-attachments/assets/2fd4e7d1-9be5-4c9e-ae3a-888a604e48b5" />
+
 Requirements
 - JDK 14 or newer
 
