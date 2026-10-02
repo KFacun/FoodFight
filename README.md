@@ -15,7 +15,7 @@ Through the project folder:
     cp src/main/resources/* out
     java -cp out FoodFight.Game
 
-- or -
+OR
 
 Open the folder in an IDE and run 'Game.java'.
 There are images involved for the sprites so make sure 'src/main/resources' is on the classpath.
