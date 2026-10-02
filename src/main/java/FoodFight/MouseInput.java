@@ -85,8 +85,11 @@ public class MouseInput extends MouseAdapter {
 				game.gameState = STATE.Level1;
 				
 				if( gameTimerThread.isAlive()) {
-					System.out.println("gameTimerThread is running after Level1 starts");
-				}else gameTimerThread.start();
+					GameTimer.resume();   // coming back from the menu: continue the clock
+				} else {
+					GameTimer.startTimer();   // first time pressing Play: start from zero
+					gameTimerThread.start();
+				}
 				
 				System.out.println("New game pressed from main menu");
 				
@@ -134,7 +137,7 @@ public class MouseInput extends MouseAdapter {
 			
 			if(mouseOver(mx, my, Game. WIDTH - 120 , Game.HEIGHT - 775, 100, 32)) {
 				game.gameState = STATE.Pause;
-
+				GameTimer.pause(); 
 				System.out.println("Pause Button pressed from Level1");
 				
 				//Thread gameTimerThread = new Thread(new GameTimer()); // GameTimer thread
@@ -146,6 +149,7 @@ public class MouseInput extends MouseAdapter {
 		if (game.gameState == STATE.Pause) {
 			
 			if(mouseOver(mx, my, Game.WIDTH/2 - 100,  Game.HEIGHT/2 - 250, 200, 32)) {
+				GameTimer.resume();
 				game.gameState = STATE.Level1;
 				
 			}
@@ -200,3 +204,4 @@ public class MouseInput extends MouseAdapter {
 //	}
 	
 }
+
