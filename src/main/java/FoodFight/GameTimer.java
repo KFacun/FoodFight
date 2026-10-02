@@ -2,73 +2,74 @@ package FoodFight;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
-// this is a time that keeps a running clock of the time the game is playing.
 // Reece Bell did this.
 
 public class GameTimer implements Runnable {
-	
-	public static String finalGT = "";
-	private volatile static boolean exit = false;
-	private static boolean isRunning = false;
-	Game game;
 
-	static long startTime = System.currentTimeMillis();
-	static int oneHour = (1000 * 60 * 60);
+	public static String finalGT = "00:00:00";
+
+	private static volatile boolean exit = false;
+	private static boolean paused = true;      // starts paused until startTimer() is called
+	private static long banked = 0;            // ms counted before the current stretch
+	private static long lastResume = 0;        // when the current stretch began
 
 	public void run() {
 
-		isRunning = true;
-			
+		DateFormat df = new SimpleDateFormat("mm:ss:SS");
+		df.setTimeZone(TimeZone.getTimeZone("UTC"));   // no more 16-hour offset hack
+
 		while(!exit) {
-			long now = System.currentTimeMillis();
-			long elapsedTime = (now - startTime) - (16 * oneHour);
-			DateFormat df = new SimpleDateFormat("mm:ss:SS");
-			
-			if(isRunning) {
-				//System.out.println("Your current game time is " + df.format(elapsedTime));
-				finalGT = df.format(elapsedTime);
+			if(!isPaused()) {
+				finalGT = df.format(getElapsed());
 			}
-			finalGT = df.format(elapsedTime);
-			
+
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-
-		return;
-	
 	}
-	
-	public static void stop() {
-		exit = true;
-		
-		isRunning = false;
-		
-		long GameTime = System.currentTimeMillis() - startTime;
-		long elapsedTime = (GameTime) - (16 * oneHour);
-		DateFormat df = new SimpleDateFormat("HH:mm:ss:SS");
-		
-		if(!isRunning) {
-			System.out.println("Your current game is paused");
-			System.out.println("Your current game time is " + df.format(elapsedTime));
-	
-			finalGT = df.format(elapsedTime);
-			System.out.println("Your survival game time is " + finalGT);
 
+	// begins counting from zero (call once, when the game first starts)
+	public static synchronized void startTimer() {
+		banked = 0;
+		lastResume = System.currentTimeMillis();
+		paused = false;
+	}
+
+	// freezes the clock
+	public static synchronized void pause() {
+		if(!paused) {
+			banked += System.currentTimeMillis() - lastResume;
+			paused = true;
 		}
 	}
 
-	public static boolean isRunning() {
-		return isRunning;
+	// continues from where it was frozen
+	public static synchronized void resume() {
+		if(paused) {
+			lastResume = System.currentTimeMillis();
+			paused = false;
+		}
 	}
 
-	public static void setisRunning(boolean isRunning) {
-		GameTimer.isRunning = isRunning;
+	// total elapsed ms, not counting paused time
+	public static synchronized long getElapsed() {
+		if(paused) return banked;
+		return banked + (System.currentTimeMillis() - lastResume);
+	}
+
+	public static synchronized boolean isPaused() {
+		return paused;
+	}
+
+	// ends the timer thread for good (e.g. when quitting)
+	public static void stop() {
+		pause();
+		exit = true;
 	}
 }
-
 
