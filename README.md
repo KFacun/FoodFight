@@ -6,7 +6,7 @@ and throwing food at enemies. **Defeat all of them to win.**
 
 
 
-<img width="800" height="619" alt="FoodFight" src="https://github.com/user-attachments/assets/2fd4e7d1-9be5-4c9e-ae3a-888a604e48b5" />
+<img width="600" height="464" alt="FoodFight" src="https://github.com/user-attachments/assets/2fd4e7d1-9be5-4c9e-ae3a-888a604e48b5" />
 
 
 
